@@ -1,0 +1,35 @@
+Please visit below website and start performing queries as per question given below. This website is SQL editor of W3 and has its own databases.
+
+https://www.w3schools.com/sql/trysql.asp?filename=trysql_asc
+
+Paste your answer (i.e query and NOT output) to the respective question.
+
+Question 1: Find Top 5 Product based on their SaleValue for the Month of August in Year 1996
+Answer: SELECT   ProductName, Price From Products Inner join OrderDetails on Products.ProductID=OrderDetails.ProductID Inner join Orders on OrderDetails.OrderID=Orders.OrderID Where Orders.OrderDate like '1996-08%' order by Products.Price desc
+Limit 5;
+
+
+Question 2: Find Top 5 Product based on their SaleValue. Display all information of Product including category details, supplier details and TotalSalesValue(Exclude all Id columns except for Product).
+Answer: SELECT Products.ProductID, ProductName, Unit, Price, SupplierName, ContactName,	Address, City, PostalCode, Country, Phone, CategoryName, Description From Products Inner join Categories on Products.CategoryID=Categories.CategoryID Inner join Suppliers on Products.SupplierID=Suppliers.SupplierID order by Products.Price desc limit 5;
+
+
+
+Question 3: Find Top 5 Supplier based on their Sales Value. Display all Information of supplier and their sale value.
+Answer: Select Price, Suppliers.SupplierID,	SupplierName, ContactName,	Address, City,	PostalCode,	Country,  Phone From Suppliers inner join Products on Suppliers.SupplierID=Products.SupplierID order by Products.Price desc limit 5;
+
+
+Question 4: Find Top 5 Employees based on number of order they handled. Display all information of employees with order count.
+Answer: Select Employees.EmployeeID, FirstName, LastName,	BirthDate,	Photo,	Notes, Quantity From Employees Inner join Orders on Employees.EmployeeID=Orders.EmployeeID inner join OrderDetails on Orders.OrderID = OrderDetails.OrderID order by Quantity desc limit 5;
+
+
+Question 5: Find all information of shippers with their order delivery count.
+Answer: SELECT Shippers.ShipperID, Quantity as 'order delivery count', ShipperName, Phone From Shippers inner join Orders on Shippers.ShipperID=Orders.ShipperID inner join OrderDetails on Orders.OrderID = OrderDetails.OrderID order by Quantity desc limit 5;
+
+
+
+Question 6: Find Top 5 Customers for Beverages based on their total purchase value.
+Answer: SELECT CustomerName, Price*Quantity as 'Purchase Value' From Customers inner join Orders on Customers.CustomerID=Orders.CustomerID inner join OrderDetails on Orders.OrderID = OrderDetails.OrderID inner join Products on OrderDetails.ProductID = Products.ProductID inner join Categories on Products.CategoryID=Categories.CategoryID where CategoryName='Beverages' order by Price*Quantity desc limit 5
+
+
+Question 7: Find Top 5 Customers based on their total purchase value.
+Answer: SELECT CustomerName, Price*Quantity as 'Purchase Value' From Customers inner join Orders on Customers.CustomerID=Orders.CustomerID inner join OrderDetails on Orders.OrderID = OrderDetails.OrderID inner join Products on OrderDetails.ProductID = Products.ProductID order by Price*Quantity desc limit 5
